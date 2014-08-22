@@ -20,7 +20,7 @@ http://tympanus.net/codrops/2014/08/05/page-preloading-effect/
 Best practice build app - Ionic
 http://modernweb.com/2014/07/28/best-practices-building-angular-js-apps/
 
-AngulaJs -
+AngulaJs show case
 http://angular-js.in/
 
 
@@ -55,5 +55,11 @@ Substitute ios for android if not on a Mac, but if you can, the ios development 
 ## Demo
 http://plnkr.co/edit/0RXSDB?p=preview
 
-## Issues
+## USO DI GIT
+git init
+git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
+.gitignore (contiene le cartelle e file che devono essere esclusi)
+git add .
+git commit -m "commento"
+git
 Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
