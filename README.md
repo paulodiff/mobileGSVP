@@ -56,10 +56,14 @@ Substitute ios for android if not on a Mac, but if you can, the ios development 
 http://plnkr.co/edit/0RXSDB?p=preview
 
 ## USO DI GIT
+# Guida http://rogerdudler.github.io/git-guide/index.it.html
+```bash
 git init
+git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
 git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
 .gitignore (contiene le cartelle e file che devono essere esclusi)
 git add .
 git commit -m "commento"
-git
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/contribute/#issues) to the main Ionic repository. On the other hand, pull requests are welcome here!
+git push origin
+```
+
