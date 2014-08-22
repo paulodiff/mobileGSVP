@@ -1,4 +1,7 @@
-Informazioni ed articoli di riferimento
+#Gestione Servizi Volontari Provincia di Rimini - Versione Mobile
+
+
+##Informazioni ed articoli di riferimento
 
 
 TICK LIST - Ionic tick list controller
@@ -16,7 +19,6 @@ http://modernweb.com/2014/07/28/best-practices-building-angular-js-apps/
 
 AngulaJs -
 http://angular-js.in/
-
 
 
 
