@@ -24,6 +24,18 @@ AngulaJs show case
 http://angular-js.in/
 
 
+## Uso di GIT
+http://rogerdudler.github.io/git-guide/index.it.html
+
+```bash
+git init
+git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
+git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
+.gitignore (contiene le cartelle e file che devono essere esclusi)
+git add .
+git commit -m "commento"
+git push origin
+```
 
 This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
 
@@ -55,15 +67,4 @@ Substitute ios for android if not on a Mac, but if you can, the ios development 
 ## Demo
 http://plnkr.co/edit/0RXSDB?p=preview
 
-## USO DI GIT
-# Guida http://rogerdudler.github.io/git-guide/index.it.html
-```bash
-git init
-git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
-git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
-.gitignore (contiene le cartelle e file che devono essere esclusi)
-git add .
-git commit -m "commento"
-git push origin
-```
 
