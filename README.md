@@ -1,5 +1,8 @@
 #Gestione Servizi Volontari Provincia di Rimini - Versione Mobile
 
+###Descrizione
+Versione Mobile della gestione dei servizi dei volontari.
+E' stato usato il Ionic Framework
 
 ##Informazioni ed articoli di riferimento
 
