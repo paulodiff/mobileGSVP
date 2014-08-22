@@ -1,11 +1,13 @@
 #Gestione Servizi Volontari Provincia di Rimini - Versione Mobile
 
-###Descrizione
+##Descrizione
 Versione Mobile della gestione dei servizi dei volontari.
 E' stato usato il Ionic Framework
 
 ##Informazioni ed articoli di riferimento
 
+IONIC Framework
+http://ionicframework.com/
 
 TICK LIST - Ionic tick list controller
 http://www.bjoernacker.de/javascript/ionic-tick-list-controller/
@@ -36,8 +38,6 @@ git add .
 git commit -m "commento"
 git push origin
 ```
-
-This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
 
 ## How to use this template
 

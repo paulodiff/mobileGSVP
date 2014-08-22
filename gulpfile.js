@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
+var git = require('gulp-git');
 var stripDebug = require('gulp-strip-debug');
 //var minifyCss = require('gulp-minify-css');
 //var sass = require('gulp-sass');
@@ -28,6 +29,16 @@ gulp.task('compress', function() {
     .pipe(uglify())
     .pipe(gulp.dest('www/js-min'))
 });
+
+// Run git commit
+// src are the files to commit (or ./*)
+gulp.task('git', function(){
+   gulp.src('./*')
+    .pipe(git.add())
+    //.pipe(git.commit('DEMO'))
+    //.pipe(git.push('origin', 'master', function (err) { if (err) throw err; }))
+});
+
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
