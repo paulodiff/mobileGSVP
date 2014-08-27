@@ -6,23 +6,30 @@
         
         <div class="list card">
             <div class="item item-avatar">
-                <img src="img/cocca2.jpg">
+                <img src="img/cocca2logo.jpg">
                 <h2>Provincia di Rimini</h2>
                 <p>Gestione Servizi Volontari</p>
 
               </div>
 
-              <div class="item item-image">
-                <img src="img/cocca2.jpg">
-              </div>
 
               <a class="item item-icon-left assertive" href="#">
                 <i class="icon ion-code-download"></i>
                 Ruggero Ruggeri
               </a>        
              <div class="item">
-                Utente: {{navTitle}}
-              </div>        
+                Utente: {{navTitle}} <br>
+                $location.protocol() = <span ng-bind={{$location.protocol()}}></span> <br>
+                $location.host() = <span ng-bind="$location.host()"></span> <br>
+                $location.port() = <span ng-bind="$location.port()"></span> <br>
+                $location.path() = <span ng-bind="$location.path()"></span> <br>
+                $location.search() = <span ng-bind="$location.search()"></span> <br>
+                $location.hash() = <span ng-bind="$location.hash()"></span> <br>
+                base_url = <span>{{base_url}}</span> <br>
+              </div>  
+              <div class="item item-image">
+                <img src="img/cocca2logo.jpg">
+              </div>
         </div>
     </ion-content>
 

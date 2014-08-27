@@ -32,7 +32,6 @@ http://rogerdudler.github.io/git-guide/index.it.html
 ```bash
 git init
 git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
-git remote add origin https://USERNAME:PASSWORD@github.com/USERNAME/PROJECTNAME.git
 .gitignore (contiene le cartelle e file che devono essere esclusi)
 git add .
 git commit -m "commento"

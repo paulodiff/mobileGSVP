@@ -196,7 +196,7 @@ angular.module('myApp', [
     });    
   
   RestangularProvider.setBaseUrl('/apiQ');
-  RestangularProvider.setDefaultRequestParams({ apiKey: '4f847ad3e4b08a2eed5f3b54' });
+  RestangularProvider.setDefaultRequestParams({ apiKey: '**********************' });
   RestangularProvider.setRestangularFields({id: '_id.$oid'});
   RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
         if (operation === 'put') {

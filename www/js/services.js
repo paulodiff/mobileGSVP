@@ -184,23 +184,24 @@ angular.module('myApp.services', [])
 
 */
 
-  .service('Phone', ['$resource',
+/*
+.service('Phone', ['$resource',
   function($resource){
     return $resource('/apiQ/utentiAll', {}, {
       query: {method:'GET', params:{phoneId:'phones'}, isArray:true}
     });
   }])
+*/
 
-
-.factory('AuthService', ['API_PROVIDER_URL', '$http', 'Session', 
-                         function (API_PROVIDER_URL, $http, Session) {
+.factory('AuthService', ['API_PROVIDER_URL', '$http', 'Session', '$rootScope', 
+                         function (API_PROVIDER_URL, $http, Session, $rootScope) {
   return {
     login: function (credentials) {
-        console.log('/api2/login');
+      console.log( $rootScope.base_url + '/api2/login');
 
         
       return $http
-        .post('/api2/login', credentials)
+        .post($rootScope.base_url + '/api2/login', credentials)
         .then(function (res) {
             console.log('AuthService login then');
             console.log(res);
@@ -227,9 +228,9 @@ angular.module('myApp.services', [])
       
     logout: function (credentials) {
         console.log('AuthService logout');
-        
+        console.log( $rootScope.base_url + '/api2/logout');
       return $http
-        .post('/api2/logout', credentials)
+        .post( $rootScope.base_url + '/api2/logout', credentials)
         .then(function (res) {
             console.log('AuthService login then');
             console.log(res);

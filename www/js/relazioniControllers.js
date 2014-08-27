@@ -24,7 +24,6 @@ angular.module('myApp.controllers')
     $scope.openedPopupDate = false;   
     
     //if (( configAction == 'edit') || ( configAction == 'view') || ( configAction == 'new') )  {
-      
         
     console.log('EditItemCtrlRelazioni : get data from rapportiAll : ' + $stateParams.id + ' Action ' + configAction);
 
@@ -158,6 +157,17 @@ angular.module('myApp.controllers')
             
     });
     
+
+    $scope.toggleRight = function() {
+        var alertPopup = $ionicPopup.alert({
+                title: '*TODO*',
+                template: 'TODO'
+        });
+                alertPopup.then(function(res) {
+                console.log('EditItemCtrlRelazioni: toggleRight');
+        });
+    };                           
+                        
                         
     /*    
     if ( configAction == 'new') {
@@ -374,9 +384,10 @@ angular.module('myApp.controllers')
 // InfiniteCtrl ---------------------------------------------------------------------------------
 // InfiniteCtrl ---------------------------------------------------------------------------------
 // InfiniteCtrl ---------------------------------------------------------------------------------
-.controller('InfiniteCtrlRelazioni', ['$scope', '$location', 'Restangular', '$filter', 'Session' , function($scope,  $location, Restangular, $filter, Session) {
+.controller('InfiniteCtrlRelazioni', ['$scope', '$location', 'Restangular', '$filter', 'Session' , '$ionicPopup',
+                                      function($scope,  $location, Restangular, $filter, Session, $ionicPopup) {
     
-    console.log('InfiniteCtrlRapporti start...');
+    console.log('InfiniteCtrlRelazioni start...');
   
   $scope.totalPages = 0;
   $scope.itemsCount = 0;
@@ -540,6 +551,19 @@ angular.module('myApp.controllers')
         console.log('editItem');
         $location.path('/menu/editRelazioni/' + itemId);
     };
+    
+    
+    
+    $scope.toggleRight = function() {
+        var alertPopup = $ionicPopup.alert({
+                title: '*TODO*',
+                template: 'TODO'
+        });
+                alertPopup.then(function(res) {
+                console.log('EditItemCtrlRelazioni: toggleRight');
+        });
+    }; 
+    
     
     
 }]);

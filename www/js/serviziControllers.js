@@ -464,6 +464,9 @@ angular.module('myApp.controllers')
     
     // popola la lista utenti
     var volontariList = Restangular.all('utentiAll');
+                                 
+    console.log('InfiniteCtrl #VolontariListURL ' + volontariList.getRestangularUrl());                              
+                                 
     volontariList.getList().then(function(accounts) {
         console.log(accounts);
         if(Session.isAdmin) {

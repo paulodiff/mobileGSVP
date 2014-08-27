@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.myapp2786537" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>myApp2</name>
+  <name>GSVP</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Applicazione per la gestione dei servizi dei volontari della Polizia Provinciale. Versione Mobile.
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="ruggero.ruggeri@provincia.rimini.it" href="http://federadati.provincia.rimini.it/">
+      Ruggeri Ruggero
     </author>
   <content src="index.html"/>
   <access origin="*"/>
@@ -16,4 +16,19 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+    
+<icon src="cordova/cordova_128.png"/>
+    
+    <platform name="android">
+              <icon src="cordova/cordova_android_36.png" density="ldpi" />
+              <icon src="cordova/cordova_android_48.png" density="mdpi" />
+              <icon src="cordova/cordova_android_72.png" density="hdpi" />
+              <icon src="cordova/cordova_android_96.png" density="xhdpi" />
+     </platform>
+    
+<preference name="SplashScreen" value="screen" />
+<preference name="SplashScreenDelay" value="10000" />
+    
+    
+    
 </widget>
