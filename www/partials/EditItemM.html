@@ -122,7 +122,7 @@
             <button class="button icon-left ion-arrow-return-right button-full button-balanced" ng-show="(configAction == 'edit') && (id_rapporto_valido_servizio != null) && (item.annullato_servizi == 0)" id="cancelbutton" ng-click="goto_relazione_action(id_rapporto_valido_servizio)" name="button2id"    class="btn btn-success">Vai alla Relazione n. {{id_rapporto_valido_servizio}}</button>
             <button class="button icon-left ion-plus-circled button-full button-balanced" ng-show="(configAction == 'edit') && (id_rapporto_valido_servizio == null) && (item.annullato_servizi == 0)" id="rapportobutton" ng-click="new_relazione_action(item.id)" name="button3id"    class="btn btn-success">Crea nuova Relazione di Servizio</button>
             <button class="button  button-full button-positive" ng-show="(item.annullato_servizi == 1)" id="cancelbutton" name="button2id"    class="btn btn-danger">Elemento ANNULLATO - nessuna operazione possibile</button>
-            <button class="button icon-left ion-star  button-full button-positive" id="debugBbutton" name="debugButton" ng-click="debug_action(item)"  class="btn btn-danger">DEBUG</button>
+            <button ng-show="false" class="button icon-left ion-star  button-full button-positive" id="debugBbutton" name="debugButton" ng-click="debug_action(item)"  class="btn btn-danger">DEBUG</button>
             
             
             

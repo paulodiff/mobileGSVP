@@ -2,7 +2,8 @@
 
 ##Descrizione
 Versione Mobile della gestione dei servizi dei volontari.
-E' stato usato il Ionic Framework
+E' stato usato il Ionic Framework.
+La versione mobile utilizza lo stesso ambiente della versione Desktop.
 
 ##Informazioni ed articoli di riferimento
 

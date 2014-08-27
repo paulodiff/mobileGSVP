@@ -34,6 +34,7 @@ angular.module('myApp.controllers')
                 
         // posizione del web service        
         $rootScope.base_url = "http://10.0.1.157:3000";
+        
         //$rootScope.base_url = "http://federadati.provincia.rimini.it:3000";
         console.log('WEB SERVICE WEB URL  : ' + $rootScope.base_url);
         console.log('Restangular set base Url '+ $rootScope.base_url + '/apiQ' );
