@@ -15,7 +15,6 @@ body {
    background-color: #e3360d; 
 }
 
-
 #welcome {
     padding-top: 0px;
     margin-top: -15px;
@@ -25,13 +24,16 @@ body {
     font-weight: bold;
     width: 50%;
 }
+
 #author {
     font-family: Menlo;
     font-weight: bold;
 }
+
 #results, #volume {
     float: right;
 }
+
 #volLbl {
     float:  left;
 }
@@ -50,13 +52,24 @@ body {
     margin-bottom: 10px;
 }
 .bgMain {
-    left-margin: -20px;
-    /*margin-top: 7%;*/
-    background-image: url('../img/itunes.jpg');
-    background-size: 250px;
-    background-repeat: no-repeat;
-    background-position:center;
+    background: ##00aa77 !important;
+    background-image: url("../img/zenbg-1.png"), url("../img/zenbg-2.png") !important;
+    background-repeat: repeat-x, repeat !important;
 }
+
+.bgTest {
+    background-color: none !important;
+    background-image: none !important;    
+}
+
+.itemTopRight {
+    float: right;
+    margin: 1px;
+    border: 0px solid;
+    font-size: 80%;
+}
+
+
 .bgSearch {
     background-image: url('../img/itunes.jpg');
     background-size: 250px;
@@ -74,12 +87,9 @@ body {
     }
 }
 
-
 /* ionic fancy select :: http://codepen.io/mhartington/pen/CImqy */
 
-
-
-fancy-select .list {  margin: -1px 0; }
+.fancy-select .list {  margin: -1px 0; }
 
 /* Items */
 /* line 13, ../scss/modules/_fancy-select.scss */

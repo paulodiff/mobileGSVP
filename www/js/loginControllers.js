@@ -33,20 +33,20 @@ angular.module('myApp.controllers')
         // CONFIGURAZIONI -----------------------------------------------------------------        
                 
         // posizione del web service        
-        $rootScope.base_url = "http://10.0.1.157:3000";
+        $rootScope.base_url = "http://federadati.provincia.rimini.it:3000";
         
         //$rootScope.base_url = "http://federadati.provincia.rimini.it:3000";
         console.log('WEB SERVICE WEB URL  : ' + $rootScope.base_url);
         console.log('Restangular set base Url '+ $rootScope.base_url + '/apiQ' );
         Restangular.setBaseUrl($rootScope.base_url + '/apiQ');
                 
-        /*LOGIN AUTOMATICO*/
+        /*LOGIN AUTOMATICO
         var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IldXRi1JVEFMSUEiLCJpc0F1dGhvcml6ZWQiOnRydWV9.VWHKW_O31P4Eg2PwW3PvAufKSI3dfDPF8XY3_Ce05sQ';        
         Session.create(1, 'PROVINCIA', token,  true);
         $scope.currentUser = 'PROVINCIA';
         $scope.isAuthorized = true;
         Restangular.setDefaultRequestParams({ apiKey: Session.token });
-        /**/
+        */
         
         
         //AUTH_EVENTS.loginFailed
@@ -191,20 +191,22 @@ angular.module('myApp.controllers')
 
 // AboutController ------------------------------------------------------------------------------------
 .controller('AboutController', 
-            [ '$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService','Session','$location',
-            function ($scope, $rootScope, AUTH_EVENTS, AuthService, Session, $location) {
+            [ '$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService','Session','$location','$ionicLoading',
+            function ($scope, $rootScope, AUTH_EVENTS, AuthService, Session, $location, $ionicLoading ) {
     console.log('AboutController...');
     console.log(Session);
     $scope.navTitle = Session.nome_breve_utenti;
     $scope.base_url = $rootScope.base_url;
                 
     $scope.$location = {};
+    $ionicLoading.show({   template: 'Loading...'   });         
     angular.forEach("protocol host port path search hash".split(" "), function(method){
         $scope.$location[method] = function(){
         var result = $location[method].call($location);
         return angular.isObject(result) ? angular.toJson(result) : result;
         };
     });
+    $ionicLoading.hide();
                 
     
 }]);

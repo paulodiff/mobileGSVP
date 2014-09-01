@@ -1,9 +1,16 @@
 #Gestione Servizi Volontari Provincia di Rimini - Versione Mobile
 
 ##Descrizione
+
 Versione Mobile della gestione dei servizi dei volontari.
 E' stato usato il Ionic Framework.
 La versione mobile utilizza lo stesso ambiente della versione Desktop.
+
+Come metterlo in produzione:
+1)Modificare la base_url
+2)Lanciare gulp compress
+3)Copiare tutto con js-min al posto di js
+
 
 ##Informazioni ed articoli di riferimento
 
@@ -25,6 +32,9 @@ http://modernweb.com/2014/07/28/best-practices-building-angular-js-apps/
 
 AngulaJs show case
 http://angular-js.in/
+
+Background Generator
+http://mudcu.be/
 
 
 ## Uso di GIT

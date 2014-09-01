@@ -28,13 +28,15 @@
                 <ion-item ng-repeat="item in items" class="item-icon-left">
                   <i ng-show="item.annullato_servizi==1" class="icon ion-close-circled"></i>
                   <i ng-show="item.annullato_servizi==0" class="icon ion-checkmark"></i>
-                  <p><b>{{item.nome_breve_utenti}}</b> - {{item.data_servizi | date:'dd/MM/yyyy' }} {{item.da_ora_servizi | date:'HH:mm' }} {{item.a_ora_servizi | date:'HH:mm' }}</p>
+                  <span class="itemTopRight">{{item.data_servizi | date:'dd/MM/yyyy' }}</span>    
+                  <p><b>{{item.nome_breve_utenti}}</b></p>
+                  <span class="itemTopRight">{{item.da_ora_servizi | date:'HH:mm' }} {{item.a_ora_servizi | date:'HH:mm' }}</span>    
                   <p>{{item.elenco_volontari}} </p>
-                  <p>{{item.note_servizi}} - {{item.rapporto_servizi }}</p>
-                                      
+                  <p>{{item.note_servizi}}</p>
+                  <p>{{item.rapporto_servizi }}</p>
                     <ion-option-button class="button-info"
                        ng-click="editItem(item.id)">
-                        Edit
+                        Dettagli
                     </ion-option-button>
                 </ion-item>
             </ion-list>
