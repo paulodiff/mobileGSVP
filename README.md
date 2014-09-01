@@ -7,10 +7,10 @@ E' stato usato il Ionic Framework.
 La versione mobile utilizza lo stesso ambiente della versione Desktop.
 
 Come metterlo in produzione:
-1)Modificare la base_url
-2)Lanciare gulp compress
-3)Copiare tutto con js-min al posto di js
-4)GIT-UPDATE.BAT (upload to GITHUB)
+- Modificare la base_url
+- Lanciare gulp compress
+- Copiare tutto con js-min al posto di js
+- GIT-UPDATE.BAT (upload to GITHUB)
 
 ##Informazioni ed articoli di riferimento
 
