@@ -4,7 +4,6 @@
     more of an example of some Ionic components for now -->
     <ion-content has-header="true" padding="true">
 
-     
         <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon" ng-click="toggleLeft()"></button>
         </ion-nav-buttons>
@@ -12,19 +11,14 @@
           <button class="button button-icon button-clear ion-search" ng-click="toggleRight()"></button>
         </ion-nav-buttons>
         
-        
         <div class="list">
-            
-    
-        
             <div class="item item-calm">
-                <div ng-show="configAction == 'edit'" ><h2><b>Modifica Preventivo di Servizio : {{item.id}}</b></h2></div>
+                <div ng-show="configAction == 'edit'"><h2><b>Preventivo di Servizio : {{item.id}} *</b></h2></div>
                 <div ng-show="configAction == 'new'"><h2><b>Creazione nuovo Preventivo di Servizio</b></h2></div>
-                <div ng-show="configAction == 'view'"><h2><b>Visualizzazione  Preventivo di Servizio : {{item.id}}</b></h2></div>
+                <div ng-show="configAction == 'view'"><h2><b>Preventivo di Servizio : {{item.id}} **</b></h2></div>
             </div>
             
             <!--
-            
             <label class="item item-input item-button-right">
                 <span class="input-label">Id id_servizi</span>
                 <input type="text"  class="form-control" ng-model="item.id">
@@ -32,7 +26,6 @@
                     <i class="icon ion-edit"></i>
                 </button>
             </label>
-            
             -->
 
             <!--

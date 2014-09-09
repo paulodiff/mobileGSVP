@@ -384,8 +384,8 @@ angular.module('myApp.controllers')
 // InfiniteCtrl ---------------------------------------------------------------------------------
 // InfiniteCtrl ---------------------------------------------------------------------------------
 // InfiniteCtrl ---------------------------------------------------------------------------------
-.controller('InfiniteCtrlRelazioni', ['$scope', '$location', 'Restangular', '$filter', 'Session' , '$ionicPopup',
-                                      function($scope,  $location, Restangular, $filter, Session, $ionicPopup) {
+.controller('InfiniteCtrlRelazioni', ['$scope', '$location', 'Restangular', '$filter', 'Session' , '$ionicPopup', '$ionicPopover',
+                                      function($scope,  $location, Restangular, $filter, Session, $ionicPopup, $ionicPopover) {
     
     console.log('InfiniteCtrlRelazioni start...');
   
@@ -563,7 +563,41 @@ angular.module('myApp.controllers')
                 console.log('EditItemCtrlRelazioni: toggleRight');
         });
     }; 
+                                          
+    $scope.OpenFilterFromPopover = function() {
+        $scope.popover.hide();
+        //$scope.sortModal.show();
+    };
     
+    // Gestione popover                                      
+                                          
+    var templatePopover = '<ion-popover-view>';
+    //templatePopover +=    '<ion-header-bar><h1 class="title">Azioni possibili</h1></ion-header-bar>';                                          
+    templatePopover +=    '<ion-content>';                                      
+    templatePopover +=    '<div class="list">';
+    templatePopover +=    '<a class="item item-icon-left" ng-click="OpenFilterFromPopover()"><i class="icon ion-funnel"></i>Filtro</a>';
+    //templatePopover +=    '<button class="button button-clear button-positive" ng-click="debug_action()">Chiudi</button>';
+    templatePopover +=    '</div>';
+    templatePopover +=    '</ion-content>';                                      
+    templatePopover +=    '</ion-popover-view>';
+
+
+                                       
+                                          
+    console.log(templatePopover);                                          
+                                          
+    //$ionicPopover.fromTemplateUrl('popover.html', function(popover) {
+     //$scope.popover = popover;
+    //});              
+                             
+    $scope.popover = $ionicPopover.fromTemplate(templatePopover, { scope: $scope });                                     
+                                          
+                                          
+    $scope.$on('$destroy', function() {
+        $scope.popover.remove();
+    });                                          
+                                          
+                                          
     
     
 }]);
