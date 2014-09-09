@@ -52,14 +52,14 @@ body {
     margin-bottom: 10px;
 }
 .bgMain {
-    background: ##00aa77 !important;
+    background: rgba(147, 171, 237, 0.28) !important;
     /* background-image: url("../img/zenbg-1.png"), url("../img/zenbg-2.png") !important; */
     background-repeat: repeat-x, repeat !important; 
 }
 
 .bgTest {
-    background-color: none !important;
-    background-image: none !important;    
+    background-color: #00aa77 !important;
+    /* background-image: ##00aa77 !important; */
 }
 
 .itemTopRight {
@@ -76,6 +76,7 @@ body {
     background-repeat: no-repeat;
     background-position:center;
 }
+
 @media screen and (max-device-width: 640px){
     .fade-bar {
         height: 20px;

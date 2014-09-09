@@ -7,7 +7,8 @@ E' stato usato il Ionic Framework.
 La versione mobile utilizza lo stesso ambiente della versione Desktop.
 
 Come metterlo in produzione:
-- Modificare la base_url
+
+- Modificare la base_url/login in loginControllers.js
 - Lanciare gulp compress
 - Copiare tutto con js-min al posto di js
 - GIT-UPDATE.BAT (upload to GITHUB)

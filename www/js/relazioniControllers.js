@@ -159,6 +159,8 @@ angular.module('myApp.controllers')
     
 
     $scope.toggleRight = function() {
+        $state.go('menu.listRelazioni');
+        /*
         var alertPopup = $ionicPopup.alert({
                 title: '*TODO*',
                 template: 'TODO'
@@ -166,6 +168,7 @@ angular.module('myApp.controllers')
                 alertPopup.then(function(res) {
                 console.log('EditItemCtrlRelazioni: toggleRight');
         });
+        */
     };                           
                         
                         

@@ -26,9 +26,9 @@ angular.module('myApp.controllers')
     $scope.openedPopupDate = false;   
                             
     console.log(  'EditItemCtrl:  load button action :');      
-      $scope.toggleRight = function() {
-             $state.go('menu.list');
-          
+                        
+    $scope.toggleRight = function() {
+        $state.go('menu.list');
     };                                 
  
     $scope.rightButtons =  [{
