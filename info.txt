@@ -1,0 +1,74 @@
+Node version: v0.10.24
+
+Cordova version: 0.21.7
+
+Config.xml file: 
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget id="com.ionicframework.myapp2786537" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>GSVP</name>
+  <description>
+        Applicazione per la gestione dei servizi dei volontari della Polizia Provinciale. Versione Mobile.
+    </description>
+    <author email="ruggero.ruggeri@provincia.rimini.it" href="http://federadati.provincia.rimini.it/">
+      Ruggeri Ruggero
+    </author>
+  <content src="index.html"/>
+  <access origin="*"/>
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <feature name="StatusBar">
+    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+    
+<icon src="cordova/cordova_128.png"/>
+    
+    <platform name="android">
+              <icon src="cordova/cordova_android_36.png" density="ldpi" />
+              <icon src="cordova/cordova_android_48.png" density="mdpi" />
+              <icon src="cordova/cordova_android_72.png" density="hdpi" />
+              <icon src="cordova/cordova_android_96.png" density="xhdpi" />
+     </platform>
+    
+<preference name="SplashScreen" value="screen" />
+<preference name="SplashScreenDelay" value="10000" />
+    
+    
+    
+</widget>
+
+Plugins: 
+
+com.ionic.keyboard,org.apache.cordova.console,org.apache.cordova.device,org.apache.cordova.splashscreen
+
+Android platform:
+
+Available Android targets:
+----------
+id: 1 or "android-19"
+     Name: Android 4.4.2
+     Type: Platform
+     API level: 19
+     Revision: 2
+     Skins: HVGA, QVGA, WQVGA400, WQVGA432, WSVGA, WVGA800 (default), WVGA854, WXGA720, WXGA800, WXGA800-7in
+     ABIs : armeabi-v7a, x86
+----------
+id: 2 or "Google Inc.:Google APIs:19"
+     Name: Google APIs
+     Type: Add-On
+     Vendor: Google Inc.
+     Revision: 2
+     Description: Android + Google APIs
+     Based on Android 4.4.2 (API level 19)
+     Libraries:
+      * com.google.android.media.effects (effects.jar)
+          Collection of video effects
+      * com.android.future.usb.accessory (usb.jar)
+          API for USB Accessories
+      * com.google.android.maps (maps.jar)
+          API for Google Maps
+     Skins: WVGA854, WQVGA400, WSVGA, WXGA800-7in, WXGA720, HVGA, WQVGA432, WVGA800 (default), QVGA, WXGA800
+     ABIs : armeabi-v7a
+

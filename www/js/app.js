@@ -6,7 +6,6 @@ angular.module('myApp', [
   'ngResource',
   'restangular',
   'ui.bootstrap',
-  'angular-loading-bar',
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
@@ -185,6 +184,18 @@ angular.module('myApp', [
         accessLogged: false, 
         configAction: 'view'
     });  
+    
+    $stateProvider.state('menu.help',{
+        url: '/help',
+         views: {
+                'menuContent' :{
+                    templateUrl: "partials/help.html",
+                    controller: "HelpController"
+                }
+            },
+        accessLogged: false, 
+        configAction: 'view'
+    });
      
 
     $stateProvider.state('test',{

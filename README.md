@@ -8,7 +8,7 @@ La versione mobile utilizza lo stesso ambiente della versione Desktop.
 
 Come metterlo in produzione:
 
-- Modificare la base_url/login in loginControllers.js
+- Modificare la base_url/login in loginControllers.js (NON SERVE)
 - Lanciare gulp compress
 - Copiare tutto con js-min al posto di js
 - GIT-UPDATE.BAT (upload to GITHUB)

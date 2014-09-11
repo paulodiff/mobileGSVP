@@ -32,22 +32,33 @@ angular.module('myApp.controllers')
           
         // CONFIGURAZIONI -----------------------------------------------------------------        
                 
-        // PRODUZIONE        
-        $rootScope.base_url = "http://federadati.provincia.rimini.it:3000";
-        
-        // SVILUPPO
-        //$rootScope.base_url = "http://10.0.1.157:3000";
+              
+        // @if NODE_ENV='production'
+                
+            //PRODUZIONE : Impostazioni per produzione        
+            $rootScope.base_url = "http://federadati.provincia.rimini.it:3000";
+            
+        // @endif
+                
+        // @if NODE_ENV='debug-settings'
+                
+
+            //SVILUPPO: Impostazioni per debug
+            $rootScope.base_url = "http://10.0.1.157:3000";
+
+            var  token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IldXRi1JVEFMSUEiLCJpc0F1dGhvcml6ZWQiOnRydWV9.VWHKW_O31P4Eg2PwW3PvAufKSI3dfDPF8XY3_Ce05sQ';        
+            Session.create(1, 'PROVINCIA', token,  true);
+            $scope.currentUser = 'PROVINCIA';
+            $scope.isAuthorized = true;
+            Restangular.setDefaultRequestParams({ apiKey: Session.token });
+                        
+        // @endif
+  
+                
         console.log('WEB SERVICE WEB URL  : ' + $rootScope.base_url);
         console.log('Restangular set base Url '+ $rootScope.base_url + '/apiQ' );
         Restangular.setBaseUrl($rootScope.base_url + '/apiQ');
                 
-        /*LOGIN AUTOMATICO SVILUPPO 
-        var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IldXRi1JVEFMSUEiLCJpc0F1dGhvcml6ZWQiOnRydWV9.VWHKW_O31P4Eg2PwW3PvAufKSI3dfDPF8XY3_Ce05sQ';        
-        Session.create(1, 'PROVINCIA', token,  true);
-        $scope.currentUser = 'PROVINCIA';
-        $scope.isAuthorized = true;
-        Restangular.setDefaultRequestParams({ apiKey: Session.token });
-        */
         
         //AUTH_EVENTS.loginFailed
     
@@ -142,8 +153,8 @@ angular.module('myApp.controllers')
 // LoginController ------------------------------------------------------------------------------------
 // LoginController ------------------------------------------------------------------------------------
 .controller('LoginController', 
-            [ '$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService',
-            function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
+            [ '$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService','$state',
+            function ($scope, $rootScope, AUTH_EVENTS, AuthService,$state) {
     console.log('LoginController...');
   $scope.credentials = {
     username: '',
@@ -164,7 +175,10 @@ angular.module('myApp.controllers')
   $scope.navTitle = '<span class="item-calm">Gestione Volontari</span>';
   //$scope.navTitle = '<img style="height:100px; width:auto;" src="img/logo2.jpg" />';
              
-                
+ $scope.goto_help = function($id) {
+        console.log('HelpController : Route to login');
+        $state.go('menu.help');
+    };     
                 
   $scope.login = function (credentials) {
       console.log('login:calling .. AuthService. ..');
@@ -191,25 +205,88 @@ angular.module('myApp.controllers')
 
 // AboutController ------------------------------------------------------------------------------------
 .controller('AboutController', 
-            [ '$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService','Session','$location','$ionicLoading',
-            function ($scope, $rootScope, AUTH_EVENTS, AuthService, Session, $location, $ionicLoading ) {
+            [ '$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService','Session','$location','$ionicLoading','$http', '$ionicPopup',
+            function ($scope, $rootScope, AUTH_EVENTS, AuthService, Session, $location, $ionicLoading, $http, $ionicPopup ) {
     console.log('AboutController...');
     console.log(Session);
     $scope.navTitle = Session.nome_breve_utenti;
     $scope.base_url = $rootScope.base_url;
                 
     $scope.$location = {};
-    $ionicLoading.show({   template: 'Loading...'   });         
+    //$ionicLoading.show({   template: 'Loading...'   });         
     angular.forEach("protocol host port path search hash".split(" "), function(method){
         $scope.$location[method] = function(){
         var result = $location[method].call($location);
         return angular.isObject(result) ? angular.toJson(result) : result;
         };
     });
-    $ionicLoading.hide();
+    //$ionicLoading.hide();
+                
+                
+    $scope.test_connection = function(){
+        console.log('AboutController : test_connection');
+        $ionicLoading.show({   template: 'Loading...'   }); 
+      
+        $http({method: 'GET', url: $rootScope.base_url + '/mv/testconnection'}).
+        success(function(data, status, headers, config) {
+                console.log($rootScope.base_url + '/mv/testconnection');
+                console.log(data);
+                console.log(status);
+                console.log(headers);
+                console.log(config);
+            
+                var alertPopup = $ionicPopup.alert({
+                title: 'OK!',
+                template: 'Test di connessione ok'
+                });
+                    alertPopup.then(function(res) {
+                    console.log('Quit popup');
+                });
+        }).
+        error(function(data, status, headers, config) {
+                console.log($rootScope.base_url + '/mv/testconnection');
+                console.log(data);
+                console.log(status);
+                console.log(headers);
+                console.log(config);
+                var alertPopup = $ionicPopup.alert({
+                title: 'Errori!',
+                template: 'Test di connessione FALLITO'
+                });
+                    alertPopup.then(function(res) {
+                    console.log('Quit popup');
+                });
+        });
+        
+        
+        
+        
+        $ionicLoading.hide();
+        
+    };
+                
+                
+    
+}])
+
+// HelpController ------------------------------------------------------------------------------------
+.controller('HelpController', 
+            [ '$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService','Session','$location','$ionicLoading','$http', '$ionicPopup','$ionicSlideBoxDelegate','$state',
+            function ($scope, $rootScope, AUTH_EVENTS, AuthService, Session, $location, $ionicLoading, $http, $ionicPopup,$ionicSlideBoxDelegate,$state ) {
+    console.log('HelpController...');
+    
+                
+        // action new relazione
+    $scope.goto_login = function($id) {
+        console.log('HelpController : Route to login');
+        $state.go('menu.login');
+    };            
+    
+        
+    
+                
                 
     
 }]);
-
 
 

@@ -10,19 +10,6 @@
     </ion-nav-bar>
     
     <ion-content has-header="true">
-        <!--
-        <div class="item item-input-inset">
-            <label style="margin-right: 5px;">
-                <select  ng-model="id_utenti_selezione"  
-                         ng-options="i.id_utenti as i.nome_breve_utenti for i in utentiList"
-                         >
-                </select>
-            </label>
-           <button class="button button-positive"  style="margin-left: 5px;" ng-click="search()">
-                Cerca
-            </button>
-        </div>
-        -->
         <div>
             <ion-list>
                 <ion-item ng-repeat="item in items" class="item-icon-left">
@@ -34,7 +21,7 @@
                   <p>{{item.elenco_volontari}} </p>
                   <p>{{item.note_servizi}}</p>
                   <p>{{item.rapporto_servizi }}</p>
-                    <ion-option-button class="button-info"
+                    <ion-option-button class="button-positive"
                        ng-click="editItem(item.id)">
                         Dettagli
                     </ion-option-button>

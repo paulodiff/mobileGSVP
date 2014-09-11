@@ -3,12 +3,15 @@ var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var git = require('gulp-git');
+var preprocess = require('gulp-preprocess');
 var stripDebug = require('gulp-strip-debug');
 //var minifyCss = require('gulp-minify-css');
 //var sass = require('gulp-sass');
 //var bower = require('bower');
 //var rename = require('gulp-rename');
 //var sh = require('shelljs');
+
+//http://jbavari.github.io/blog/2014/08/23/managing-environment-variables-for-your-ionic-application/
 
 
 var paths = {
@@ -25,9 +28,10 @@ gulp.task('test', function() {
 
 gulp.task('compress', function() {
   gulp.src('www/js/*.js')
+    .pipe(preprocess({context: { NODE_ENV: 'production', DEBUG: true}}))
     .pipe(stripDebug())
     .pipe(uglify())
-    .pipe(gulp.dest('www/js-min'))
+    .pipe(gulp.dest('www/js-min'));
 });
 
 // Run git commit

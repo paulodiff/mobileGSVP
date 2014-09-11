@@ -15,8 +15,9 @@
       <div ng-if="!currentUser">
 
       <form id="loginform" class="form-horizontal" role="form" ng-submit="login(credentials)" novalidate>
-                
+               <p>&nbsp;</p>
       <div class="list">
+
          <label class="item item-text-wrap item-thumbnail-left">
               <img src="img/cocca2logo.jpg">
              <p>Applicazione per la gestione dei servizi dei volontari della Polizia Provinciale. Versione Mobile.</p>
@@ -33,6 +34,7 @@
         
       <div class="padding">
           <button class="button button-block button-positive" type="submit">Accesso</button>
+          <button class="button button-block button-balanced" ng-click="goto_help()">Guida</button>
       </div>            
           
         </form>  
@@ -50,7 +52,7 @@
           </div>
           </form>  
       </div> <!-- ng-if -->
-          
+        
           
     </form>
           
