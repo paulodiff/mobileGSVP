@@ -34,24 +34,25 @@
         
       <div class="padding">
           <button class="button button-block button-positive" type="submit">Accesso</button>
-          
           <a href="#/menu/help" class="button button-block button-balanced">Guida</a>
+          
       </div>        
           
-          
         </form>  
+
+            
       </div> <!-- ng-if -->
         
       <div ng-if="currentUser">
           <form id="loginform" class="form-horizontal" role="form" ng-submit="logout(credentials)" novalidate>
-          <div class="list">
-          
-          <label class="item item-text-wrap">
-             <p>Utente autenticato : {{currentUser}}</p>
-         </label>
-         <div class="padding">
-            <button type="submit" id="btn-login" class="button button-block button-positive">Disconnetti</button>
-          </div>
+            <div class="list">
+            <label class="item item-text-wrap">
+                <p>Utente autenticato : {{currentUser}}</p>
+            </label>
+            </div>
+            <div class="padding">
+                <button type="submit" id="btn-login" class="button button-block button-positive">Disconnetti</button>
+            </div>
           </form>  
       </div> <!-- ng-if -->
         
@@ -59,6 +60,14 @@
     </form>
           
         
+    <div class="item"> 
+        <p><b>Visualizzazione intero (per Chrome/Firefox/Safari)</b></p>
+        <div class="button-bar">
+            <button id="btn-fullOn" class="button icon-left ion-ios7-monitor button-positive" ng-click="fullscreenOn()">Abilita</button>
+            <button id="btn-fullOff" class="button icon-right ion-ios7-monitor-outline button-positive" ng-click="fullscreenOff()">Disabilita</button>
+        </div>
+     </div>
+            
         
     </ion-content>
     

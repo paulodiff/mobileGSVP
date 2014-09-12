@@ -46,11 +46,13 @@ angular.module('myApp.controllers')
             //SVILUPPO: Impostazioni per debug
             $rootScope.base_url = "http://10.0.1.157:3000";
 
+            /* 
             var  token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IldXRi1JVEFMSUEiLCJpc0F1dGhvcml6ZWQiOnRydWV9.VWHKW_O31P4Eg2PwW3PvAufKSI3dfDPF8XY3_Ce05sQ';        
             Session.create(1, 'PROVINCIA', token,  true);
             $scope.currentUser = 'PROVINCIA';
             $scope.isAuthorized = true;
             Restangular.setDefaultRequestParams({ apiKey: Session.token });
+            */
                         
         // @endif
   
@@ -155,15 +157,19 @@ angular.module('myApp.controllers')
 .controller('LoginController', 
             [ '$scope', '$rootScope', 'AUTH_EVENTS', 'AuthService','$state',
             function ($scope, $rootScope, AUTH_EVENTS, AuthService,$state) {
+                
     console.log('LoginController...');
-  $scope.credentials = {
+    console.log('LoginController...currentUser:' + $scope.currentUser );
+                
+  
+ $scope.credentials = {
     username: '',
     password: ''
   };
     
     
-  // Menu button
-  console.log('LoginController... button loader');
+  
+  
   $scope.leftButtons = [{
             type: 'button-icon button-clear ion-navicon',
             tap: function(e) {
@@ -179,6 +185,20 @@ angular.module('myApp.controllers')
         console.log('HelpController : Route to login');
         $state.go('menu.help');
     };     
+                
+    $scope.fullscreenOn = function(){
+        console.log('AboutController : fullscreen');
+        console.log('AboutController : fullscreen enabled? : ' + screenfull.enabled);
+        screenfull.request();
+    };
+
+    $scope.fullscreenOff = function(){
+        console.log('AboutController : fullscreen');
+        console.log('AboutController : fullscreen enabled? : ' + screenfull.enabled);
+        screenfull.exit();
+    };            
+                
+                
                 
   $scope.login = function (credentials) {
       console.log('login:calling .. AuthService. ..');
@@ -221,7 +241,19 @@ angular.module('myApp.controllers')
         };
     });
     //$ionicLoading.hide();
+               
                 
+    $scope.fullscreenOn = function(){
+        console.log('AboutController : fullscreen');
+        console.log('AboutController : fullscreen enabled? : ' + screenfull.enabled);
+        screenfull.request();
+    };
+
+    $scope.fullscreenOff = function(){
+        console.log('AboutController : fullscreen');
+        console.log('AboutController : fullscreen enabled? : ' + screenfull.enabled);
+        screenfull.exit();
+    };
                 
     $scope.test_connection = function(){
         console.log('AboutController : test_connection');

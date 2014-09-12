@@ -8,6 +8,7 @@ var stripDebug = require('gulp-strip-debug');
 var ngHtml2Js = require("gulp-ng-html2js");
 var minifyHtml = require("gulp-minify-html");
 var templateCache = require('gulp-angular-templatecache');
+var imagepreload = require('gulp-image-preload');
 
 //var minifyCss = require('gulp-minify-css');
 //var sass = require('gulp-sass');
@@ -39,14 +40,14 @@ gulp.task('template', function() {
     }))
     .pipe(concat("partials.min.js"))
     //.pipe(uglify())
-    .pipe(gulp.dest("www/partials-min"));
+    .pipe(gulp.dest("dist/partials"));
 });
 
 
 gulp.task('template2', function () {
     gulp.src('www/partials/*.html')
         .pipe(templateCache({ root: "partials/", module: 'myApp' }))
-        .pipe(gulp.dest('www/partials-min'));
+        .pipe(gulp.dest('dist/partials'));
 });
 
 gulp.task('compress', function() {
@@ -55,8 +56,19 @@ gulp.task('compress', function() {
     .pipe(stripDebug())
     .pipe(uglify())
     //.pipe(concat("appfull.min.js"))
-    .pipe(gulp.dest('www/js-min'));
+    .pipe(gulp.dest('dist/js'));
 });
+
+gulp.task('imagepreload', function () {
+  gulp.src('www/img/*.{png,jpg,gif,jpeg}')
+    .pipe(imagepreload({
+        //inline: "html/index1.html"
+        script: "preloadimages.js",
+        md5: false //,        scriptPath: "dist/js/"
+    }))
+    .pipe(gulp.dest('dist/js/'));
+});
+
 
 // Run git commit
 // src are the files to commit (or ./*)

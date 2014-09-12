@@ -20,7 +20,7 @@ Come metterlo in produzione:
 - NO OLD Modificare la base_url/login in loginControllers.js (NON SERVE)
 - Lanciare gulp production
 - Copiare tutto con js-min al posto di js
-- Modificare 
+- Modificare index.html
 - GIT-UPDATE.BAT (upload to GITHUB)
 
 ##Informazioni ed articoli di riferimento
@@ -56,6 +56,9 @@ http://forum.ionicframework.com/t/how-can-i-preload-content-and-images/4023/5
 Preload partials
 http://stackoverflow.com/questions/12346690/is-there-a-way-to-make-angularjs-load-partials-in-the-beginning-and-not-at-when
 http://brainoverflow.net/preloading-images-with-angularjs-directives/
+
+Framework gulp
+http://netengine.com.au/blog/gulp-and-angularjs-a-love-story-or-the-old-wheel-was-terrible-check-out-my-new-wheel/
 
 
 ## Uso di GIT

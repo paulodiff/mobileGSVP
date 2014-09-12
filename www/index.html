@@ -10,7 +10,6 @@
       
     <!-- <link rel="stylesheet" href="lib/select2-3.4.8/select2.css"> -->
     <!-- <link rel="stylesheet" href="lib/angular-loading-bar/loading-bar.css"> -->
-      
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -31,7 +30,7 @@
     <script src="lib/restangular/restangular.min.js"></script>
     <!-- <script src="lib/angular-loading-bar/loading-bar.js"></script> -->
       
-      
+    <script src="lib/screenfull/screenfull.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <!-- <script src="cordova.js"></script> -->
@@ -48,7 +47,6 @@
     <script src="js/rapportiControllers.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
-    
       
     <!-- PRODUCTION -->  
       
@@ -56,11 +54,26 @@
     <!-- <script src="js-min/appfull.min.js"></script>   -->
       
     <!-- PRELOAD  TEMPLATES -->
-    <script src="partials-min/templates.js"></script>
+    <script src="partials/templates.js"></script>
+      
+    <!-- PRELOAD IMAGES -->
+    <script>
+     $.preloadImages = function() {
+         for (var i = 0; i < arguments.length; i++) {
+                $("<img />").attr("src", arguments[i]);
+         }
+    };
+    $.preloadImages(    "img/cocca2logo.jpg",
+                        "img/guida1ok.jpg",
+                        "img/guida2ok.jpg",
+                        "img/guida3ok.jpg");
+    
+    </script>  
     
   </head>
 
   <!-- <body ng-app="starter"> -->
+    
   <body>
     
     <div ng-app="myApp" ng-controller="AppCtrl">

@@ -25,6 +25,21 @@
                 Ruggero Ruggeri
               </a>        
             
+            
+            
+             <div class="item">
+                <p>Schermo intero per migliorare la visibilità (per Chrome/Firefox/Safari)</p>
+                 <div class="button-bar">
+                    <button id="btn-testconnection" class="button  button-positive" ng-click="fullscreenOn()">Abilita</button>
+                    <button id="btn-testconnection" class="button  button-positive" ng-click="fullscreenOff()">Disabilita</button>
+                 </div>
+             </div>
+            
+ 
+             <div class="item">
+                <button id="btn-testconnection" class="button button-block button-positive" ng-click="test_connection()">Test connection</button>
+             </div>
+            
              <div class="item">
                 Utente: {{navTitle}} <br>
                 $location.protocol() = <span ng-bind={{$location.protocol()}}></span> <br>
@@ -35,10 +50,6 @@
                 $location.hash() = <span ng-bind="$location.hash()"></span> <br>
                 base_url = <span>{{base_url}}</span> <br>
              </div>  
-            
-             <div class="item">
-                <button id="btn-testconnection" class="button button-block button-positive" ng-click="test_connection()">Test connection</button>
-             </div>
             
 
         </div>
