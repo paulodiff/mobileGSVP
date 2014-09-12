@@ -42,7 +42,7 @@ angular.module('myApp.directives', []).
                 restrict : 'E',
 
                 /* Our template */
-                templateUrl: 'fancy-select.html',
+                templateUrl: 'partials/fancy-select.html',
 
                 /* Attributes to set */
                 scope: {
@@ -95,7 +95,7 @@ angular.module('myApp.directives', []).
                      * 
                      */
                     $ionicModal.fromTemplateUrl(
-                        'fancy-select-items.html',
+                        'partials/fancy-select-items.html',
                           {'scope': scope}
                     ).then(function(modal) {
                         scope.modal = modal;

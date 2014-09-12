@@ -40,7 +40,7 @@ angular.module('myApp.services', [])
       return '0.0.1';
   }])
 
-
+/*
 
 .service('modalService', ['$modal',
     function ($modal) {
@@ -95,6 +95,8 @@ angular.module('myApp.services', [])
         };
 
     }])
+
+*/
 
 /*
 

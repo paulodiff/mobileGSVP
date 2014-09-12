@@ -11,8 +11,8 @@ angular.module('myApp.controllers')
 // ReportCtrl -------------------------------------------------------------------------------------
 // ReportCtrl -------------------------------------------------------------------------------------
 // ReportCtrl -------------------------------------------------------------------------------------
-.controller('ReportCtrlMobile', ['$scope', '$rootScope', 'Restangular', 'modalService', 'rService', '$filter', '$http', '$sce', 'Session', '$ionicPopup',
-                        function( $scope,   $rootScope,   Restangular,   modalService,   rService,   $filter,   $http,   $sce,   Session,   $ionicPopup ) {
+.controller('ReportCtrlMobile', ['$scope', '$rootScope', 'Restangular', 'rService', '$filter', '$http', '$sce', 'Session', '$ionicPopup',
+                        function( $scope,   $rootScope,   Restangular,   rService,   $filter,   $http,   $sce,   Session,   $ionicPopup ) {
 
     $scope.timeCalculated = 0;
     $scope.item = {};

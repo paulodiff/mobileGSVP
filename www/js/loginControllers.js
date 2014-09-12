@@ -8,8 +8,8 @@ angular.module('myApp.controllers')
 
 
 .controller("AppCtrl", 
-            [ '$scope',   'USER_ROLES',   'AUTH_EVENTS',   '$rootScope', 'AuthService', 'modalService', 'Session', 'Restangular',  '$state', '$ionicPopup','$ionicSideMenuDelegate',
-            function($scope,   USER_ROLES,   AUTH_EVENTS,   $rootScope,   AuthService,   modalService,   Session,   Restangular,    $state,   $ionicPopup, $ionicSideMenuDelegate) {
+            [ '$scope',   'USER_ROLES',   'AUTH_EVENTS',   '$rootScope', 'AuthService', 'Session', 'Restangular',  '$state', '$ionicPopup','$ionicSideMenuDelegate',
+            function($scope,   USER_ROLES,   AUTH_EVENTS,   $rootScope,   AuthService,   Session,   Restangular,    $state,   $ionicPopup, $ionicSideMenuDelegate) {
 
                 
         console.log("AppCtrl ... ");

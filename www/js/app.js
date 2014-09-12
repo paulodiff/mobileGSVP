@@ -5,7 +5,7 @@ angular.module('myApp', [
   'ui.router',
   'ngResource',
   'restangular',
-  'ui.bootstrap',
+  //'ui.bootstrap',
   'myApp.filters',
   'myApp.services',
   'myApp.directives',
@@ -25,7 +25,7 @@ angular.module('myApp', [
     $stateProvider.state('menu', {
             url: "/menu",
             abstract: true,
-            templateUrl: "menu.html"
+            templateUrl: "partials/menuM.html"
     });
     
     
@@ -33,7 +33,7 @@ angular.module('myApp', [
             url: "/home",
             views: {
                 'menuContent' :{
-                    templateUrl: "partials/login.html",
+                    templateUrl: "partials/loginM.html",
                     controller: "LoginController"
                 }
             },
@@ -45,7 +45,7 @@ angular.module('myApp', [
             url: "/login",
             views: {
                 'menuContent' :{
-                    templateUrl: "partials/login.html",
+                    templateUrl: "partials/loginM.html",
                     controller: "LoginController"
                 }
             },
@@ -122,7 +122,7 @@ angular.module('myApp', [
     
     $stateProvider.state('view',{
         url: '/view/:id',
-        templateUrl: 'partials/EditItem.html', 
+        templateUrl: 'partials/EditItemM.html', 
             controller: 'EditItemCtrl', 
         accessLogged: true, 
         configAction: 'view'
@@ -177,7 +177,7 @@ angular.module('myApp', [
         url: '/about',
          views: {
                 'menuContent' :{
-                    templateUrl: "partials/about.html",
+                    templateUrl: "partials/aboutM.html",
                     controller: "AboutController"
                 }
             },
@@ -189,7 +189,7 @@ angular.module('myApp', [
         url: '/help',
          views: {
                 'menuContent' :{
-                    templateUrl: "partials/help.html",
+                    templateUrl: "partials/helpM.html",
                     controller: "HelpController"
                 }
             },
@@ -200,7 +200,7 @@ angular.module('myApp', [
 
     $stateProvider.state('test',{
         url: '/test',
-        templateUrl: 'partials/test.html', 
+        templateUrl: 'partials/testM.html', 
         controller: 'TestController', 
         accessLogged: false, 
         configAction: 'view'

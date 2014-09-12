@@ -8,9 +8,19 @@ La versione mobile utilizza lo stesso ambiente della versione Desktop.
 
 Come metterlo in produzione:
 
-- Modificare la base_url/login in loginControllers.js (NON SERVE)
-- Lanciare gulp compress
+// ottimizziazioni
+
+* gulp template2  : prepare il file template.js che precarica tutti i template html
+* gulp compress : comprime tutti *.js che compongono l'applicazione
+                : esegue il preprocess e sostituisce alcuni valori per la produzione
+                  elimina il login automatico 
+                  cambia url di produzione
+
+
+- NO OLD Modificare la base_url/login in loginControllers.js (NON SERVE)
+- Lanciare gulp production
 - Copiare tutto con js-min al posto di js
+- Modificare 
 - GIT-UPDATE.BAT (upload to GITHUB)
 
 ##Informazioni ed articoli di riferimento
@@ -37,6 +47,16 @@ http://angular-js.in/
 Background Generator
 http://mudcu.be/
 
+Full Screen
+http://www.html5rocks.com/en/mobile/fullscreen/
+
+Preload images
+http://forum.ionicframework.com/t/how-can-i-preload-content-and-images/4023/5
+
+Preload partials
+http://stackoverflow.com/questions/12346690/is-there-a-way-to-make-angularjs-load-partials-in-the-beginning-and-not-at-when
+http://brainoverflow.net/preloading-images-with-angularjs-directives/
+
 
 ## Uso di GIT
 http://rogerdudler.github.io/git-guide/index.it.html
@@ -52,8 +72,7 @@ git push origin
 
 ## How to use this template
 
-*This template does not work on its own*. It is missing the Ionic library, and AngularJS.
-
+This template does not work on its own*. It is missing the Ionic library, and AngularJS.
 To use this, either create a new ionic project using the ionic node.js utility, or copy and paste this into an existing Cordova project and download a release of Ionic separately.
 
 ### With the Ionic tool:

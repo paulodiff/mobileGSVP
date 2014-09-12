@@ -10,8 +10,9 @@ angular.module('myApp.controllers')
 //EditItemCtrl--------------------------------------------------------------------------------------
 //EditItemCtrl--------------------------------------------------------------------------------------
 //EditItemCtrl--------------------------------------------------------------------------------------
-.controller('EditItemCtrlRelazioni', ['$scope', '$filter', '$state', '$stateParams', 'Restangular', 'modalService', 'rService', 'Session', '$ionicPopup',  
-                    function($scope, $filter, $state, $stateParams, Restangular, modalService, rService, Session, $ionicPopup) {
+.controller('EditItemCtrlRelazioni', 
+                           ['$scope','$filter', '$state', '$stateParams', 'Restangular','rService', 'Session', '$ionicPopup',  
+                    function($scope,  $filter,   $state,   $stateParams,   Restangular,  rService ,  Session, $ionicPopup) {
 
     // azione deriva dalla configurazione del controller new/edit
     console.log('EditItemCtrlRelazioni:  configAction :' +  $state.current.configAction);

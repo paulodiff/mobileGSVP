@@ -5,6 +5,10 @@ var concat = require('gulp-concat');
 var git = require('gulp-git');
 var preprocess = require('gulp-preprocess');
 var stripDebug = require('gulp-strip-debug');
+var ngHtml2Js = require("gulp-ng-html2js");
+var minifyHtml = require("gulp-minify-html");
+var templateCache = require('gulp-angular-templatecache');
+
 //var minifyCss = require('gulp-minify-css');
 //var sass = require('gulp-sass');
 //var bower = require('bower');
@@ -18,6 +22,8 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
+gulp.task('production', ['template2','compress'] );
+
 gulp.task('default', ['test']);
 
 gulp.task('test', function() {
@@ -25,12 +31,30 @@ gulp.task('test', function() {
     gutil.log('Per comprimere i files usare : ', gutil.colors.cyan('gulp compress'));
 });
 
+gulp.task('template', function() {
+    gulp.src("www/partials/*.html")
+    .pipe(minifyHtml({empty: true,spare: true,quotes: true}))
+    .pipe(ngHtml2Js({
+        moduleName: "MyApp" ,  prefix: "partials/"
+    }))
+    .pipe(concat("partials.min.js"))
+    //.pipe(uglify())
+    .pipe(gulp.dest("www/partials-min"));
+});
+
+
+gulp.task('template2', function () {
+    gulp.src('www/partials/*.html')
+        .pipe(templateCache({ root: "partials/", module: 'myApp' }))
+        .pipe(gulp.dest('www/partials-min'));
+});
 
 gulp.task('compress', function() {
   gulp.src('www/js/*.js')
     .pipe(preprocess({context: { NODE_ENV: 'production', DEBUG: true}}))
     .pipe(stripDebug())
     .pipe(uglify())
+    //.pipe(concat("appfull.min.js"))
     .pipe(gulp.dest('www/js-min'));
 });
 
@@ -42,7 +66,6 @@ gulp.task('git', function(){
     //.pipe(git.commit('DEMO'))
     //.pipe(git.push('origin', 'master', function (err) { if (err) throw err; }))
 });
-
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')

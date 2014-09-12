@@ -12,8 +12,8 @@ angular.module('myApp.controllers')
 //EditItemCtrl--------------------------------------------------------------------------------------
 //EditItemCtrl--------------------------------------------------------------------------------------
 //EditItemCtrl--------------------------------------------------------------------------------------
-.controller('EditItemCtrl', ['$scope', '$filter', '$state', '$stateParams', 'Restangular', 'modalService', 'rService', 'Session', '$ionicPopup',   
-                    function($scope, $filter, $state, $stateParams, Restangular, modalService, rService, Session, $ionicPopup) {
+.controller('EditItemCtrl', ['$scope', '$filter', '$state', '$stateParams', 'Restangular',  'rService', 'Session', '$ionicPopup',   
+                    function( $scope,   $filter,   $state,   $stateParams,   Restangular, rService, Session, $ionicPopup) {
 
     // azione deriva dalla configurazione del controller new/edit
     console.log('EditItemCtrl:  configAction :' +  $state.current.configAction);
