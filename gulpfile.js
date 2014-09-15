@@ -9,6 +9,11 @@ var ngHtml2Js = require("gulp-ng-html2js");
 var minifyHtml = require("gulp-minify-html");
 var templateCache = require('gulp-angular-templatecache');
 var imagepreload = require('gulp-image-preload');
+var inject = require("gulp-inject");
+var rename = require("gulp-rename");
+
+var mymd5 = 'DF79492347';
+
 
 //var minifyCss = require('gulp-minify-css');
 //var sass = require('gulp-sass');
@@ -23,7 +28,7 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('production', ['template2','compress'] );
+gulp.task('production', ['template2','compress', 'index'] );
 
 gulp.task('default', ['test']);
 
@@ -38,24 +43,44 @@ gulp.task('template', function() {
     .pipe(ngHtml2Js({
         moduleName: "MyApp" ,  prefix: "partials/"
     }))
-    .pipe(concat("partials.min.js"))
+    .pipe(concat("partials-"+ mymd5 +".min.js"))
     //.pipe(uglify())
     .pipe(gulp.dest("dist/partials"));
 });
 
+gulp.task('index', function () {
+  gulp.src('dist/index-template.html')
+    .pipe(inject(gulp.src('dist/js/app-' + mymd5 +'.js', {read: false}), {starttag: '<!-- inject:app:{{ext}} -->' , relative: false}))
+    .pipe(inject(gulp.src('dist/partials/templates-' + mymd5 +'.js', {read: false}), {starttag: '<!-- inject:template:{{ext}} -->' , relative: true}))
+    //.pipe(inject(gulp.src(['www/js/*.js', '!./src/importantFile.js'], {read: false}), {relative: true}))
+    .pipe(rename('index1.html'))
+    .pipe(gulp.dest('dist/'));
+});
 
 gulp.task('template2', function () {
     gulp.src('www/partials/*.html')
         .pipe(templateCache({ root: "partials/", module: 'myApp' }))
+        .pipe(rename('templates-'+ mymd5 +'.js'))
         .pipe(gulp.dest('dist/partials'));
 });
 
 gulp.task('compress', function() {
-  gulp.src('www/js/*.js')
+  //gulp.src('www/js/*.js')
+  gulp.src([
+            'www/js/app.js',
+            'www/js/services.js',
+            'www/js/rootControllers.js',
+            'www/js/loginControllers.js',
+            'www/js/serviziControllers.js',
+            'www/js/relazioniControllers.js',
+            'www/js/rapportiControllers.js',
+            'www/js/filters.js',
+            'www/js/directives.js'
+  ])
+    .pipe(concat('app-'+ mymd5 +'.js'))
     .pipe(preprocess({context: { NODE_ENV: 'production', DEBUG: true}}))
-    .pipe(stripDebug())
-    .pipe(uglify())
-    //.pipe(concat("appfull.min.js"))
+    //.pipe(stripDebug())
+    //.pipe(uglify())
     .pipe(gulp.dest('dist/js'));
 });
 

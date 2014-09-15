@@ -18,32 +18,10 @@
             <div class="item  item-balanced">
                 <div ng-show="configAction == 'edit'"  class="panel-heading"><h2><b>Relazione di Servizio : {{item.id}} *</b></h2></div>
                 <div ng-show="configAction == 'new'"  class="panel-heading"><h2<b>Creazione nuova Relazione di Servizio</b></h2></div>
-                <div ng-show="configAction == 'view'"  class="panel-heading"><h2><b>Relazione di Servizio : {{item.id}} **</b>S</h2></div>
+                <div ng-show="configAction == 'view'"  class="panel-heading"><h2><b>Relazione di Servizio : {{item.id}} **</b></h2></div>
             </div>
             
-            
-            <!--
-            
-            <label class="item item-input item-button-right">
-                <span class="input-label">Id id_servizi</span>
-                <input type="text"  class="form-control" ng-model="item.id">
-                <button class="button button-positive">
-                    <i class="icon ion-edit"></i>
-                </button>
-            </label>
-            
-            -->
-
-            <!--
-            
-            <label class="item item-input item-select">
-                <div class="input-label">Associazione</div>
-                <select  ng-model="item.id_utenti" class="form-control" ng-options="i.id_utenti as i.nome_breve_utenti for i in utentiList"></select>                
-            </label>
-            
-            -->
-            
-            
+            <div ng-show="(configAction == 'edit') ||  (configAction == 'new')">
               <fancy-select
                     allow-empty='false'
                     label-text="Associazione"
@@ -52,9 +30,6 @@
                     header-text="Seleziona utenti"
                     items="utentiList">
             </fancy-select>
-        
-            
-
             <fancy-select
                               header-text="Selezione Volontario"
                               label-text="Volontari"
@@ -65,19 +40,6 @@
                               multi-select="true"            
                               >
             </fancy-select>
-            
-            
-            <!--
-            
-            <label class="item item-input item-select">
-            <div class="input-label">Volontari</div>
-            <select  multiple="multiple" ng-model="item.lista_volontari_servizi">
-                <option ng-repeat="a in volontariList" value="{{a.id}}">{{a.nome_completo_volontari}}</option>
-            </select>
-                
-            </label>
-            
-            -->
 
             <label class="item item-input">
                 <div class="input-label">Data Relazione</div>
@@ -85,9 +47,6 @@
                         ng-model="item.data_relazioni">
             </label>
 
-      
-            
-         
             <label class="item item-input">
                <div class="input-label">Dalle ore</div>
               <input type="time"  
@@ -99,9 +58,6 @@
                 <input type="time"  
                        ng-model="item.a_ora_relazioni"   />
             </label>
-     
-       
-
 
             <label class="item item-input">
                 <span class="input-label">Rapporto</span>
@@ -118,9 +74,49 @@
                 <span class="input-label">Note</span>
                 <input type="text" ng-model="item.note_relazioni">
             </label>
+            </div> <!-- ng-view -->
+   
+                
+            <div ng-show="(configAction == 'view')">
+             <label class="item item-input">
+                <div class="input-label"><b>Associazione:</b></div>
+                <div class="input-label">{{item.nome_breve_utenti}}</div>
+            </label>
+                
+            <label class="item item-text-wrap">
+                <b>Volontari:</b><br/>{{item.elenco_volontari}}
+            </label>                
+
+                
+            <label class="item item-input">
+                <div class="input-label"><b>Data:</b></div>
+                <div class="input-label">{{item.data_relazioni}}</div>
+            </label>
+
+            <label class="item item-input">
+               <div class="input-label"><b>Dalle ore:</b></div>
+               <div class="input-label">{{item.da_ora_relazioni}}</div>
+            </label>    
+                
+            <label class="item item-input">
+               <div class="input-label"><b>Alle ore:</b></div>
+               <div class="input-label">{{item.a_ora_relazioni}}</div>
+            </label>
+                
+            <label class="item item-text-wrap">
+                <b>Rapporto:</b><br/>{{item.rapporto_relazioni}}
+            </label>
+            <label class="item item-text-wrap">
+                <b>Auto:</b> {{item.auto_relazioni}}
+            </label>
+            <label class="item item-text-wrap">
+                <b>Note:</b><br/>{{item.note_relazioni}}
+            </label>
+            </div>
+    
             
             <button class="button button-full button-positive" ng-show="configAction == 'new'" id="salvabutton"  ng-click="save_action(item)"   name="singlebutton" class="btn btn-primary">Salva Elemento</button>
-            <button class="button button-full button-assertive" ng-show="(configAction == 'edit') && (id_rapporto_valido_servizio == null) && (item.annullato_relazioni == 0)" id="cancelbutton" ng-click="cancel_action(item)" name="button2id"    class="btn btn-danger">Annulla Elemento</button>
+            <button class="button button-full button-assertive" ng-show="(configAction == 'view') && (id_rapporto_valido_servizio == null) && (item.annullato_relazioni == 0)" id="cancelbutton" ng-click="cancel_action(item)" name="button2id"    class="btn btn-danger">Annulla Elemento</button>
             <button class="button button-full button-positive" ng-show="(item.annullato_relazioni == 1)" id="cancelbutton" name="button2id"    class="btn btn-danger">Elemento ANNULLATO - nessuna operazione possibile</button>
       
             

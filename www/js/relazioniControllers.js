@@ -332,7 +332,7 @@ angular.module('myApp.controllers')
                     });
                     alertPopup.then(function(res) {
                         console.log('ok redirect to id: ' + msg.id);
-                        $state.go('menu.editRelazioni', { id: msg.id });
+                        $state.go('menu.viewRelazioni', { id: msg.id });
                     });
                 }, 
                 function(msg) {
@@ -557,6 +557,11 @@ angular.module('myApp.controllers')
     };
     
     
+    // callback for ng-click 'editUser':
+    $scope.viewItem = function (itemId) {
+        console.log('viewItem');
+        $location.path('/menu/viewRelazioni/' + itemId);
+    };    
     
     $scope.toggleRight = function() {
         var alertPopup = $ionicPopup.alert({

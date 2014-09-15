@@ -46,13 +46,13 @@ angular.module('myApp.controllers')
             //SVILUPPO: Impostazioni per debug
             $rootScope.base_url = "http://10.0.1.157:3000";
 
-            /* 
+            
             var  token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IldXRi1JVEFMSUEiLCJpc0F1dGhvcml6ZWQiOnRydWV9.VWHKW_O31P4Eg2PwW3PvAufKSI3dfDPF8XY3_Ce05sQ';        
             Session.create(1, 'PROVINCIA', token,  true);
             $scope.currentUser = 'PROVINCIA';
             $scope.isAuthorized = true;
             Restangular.setDefaultRequestParams({ apiKey: Session.token });
-            */
+            
                         
         // @endif
   

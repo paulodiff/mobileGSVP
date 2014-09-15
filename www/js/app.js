@@ -120,10 +120,14 @@ angular.module('myApp', [
     });
     
     
-    $stateProvider.state('view',{
+    $stateProvider.state('menu.view',{
         url: '/view/:id',
-        templateUrl: 'partials/EditItemM.html', 
-            controller: 'EditItemCtrl', 
+        views: {
+                'menuContent' :{
+                    templateUrl: 'partials/EditItemM.html', 
+                    controller: 'EditItemCtrl', 
+                }
+            },
         accessLogged: true, 
         configAction: 'view'
     });
@@ -172,6 +176,18 @@ angular.module('myApp', [
         accessLogged: true, 
         configAction: 'edit'
     });
+
+    $stateProvider.state('menu.viewRelazioni',{
+        url: '/viewRelazioni/:id',
+         views: {
+                'menuContent' :{
+                    templateUrl: "partials/EditItemRelazioniM.html",
+                    controller: "EditItemCtrlRelazioni"
+                }
+            },
+        accessLogged: true, 
+        configAction: 'view'
+    });    
     
     $stateProvider.state('menu.about',{
         url: '/about',

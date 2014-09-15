@@ -606,7 +606,14 @@ angular.module('myApp.controllers')
         $location.path('/menu/edit/' + itemId);
     };
     
-    
+    // callback for ng-click 'editUser':
+    $scope.editItem = function (itemId) {
+        console.log('viewItem : change state');
+        console.log(itemId);
+        $location.path('/menu/view/' + itemId);
+    };    
+                                 
+                                 
     // callback for ng-click 'editUser':
     $scope.editRelazioni = function (itemId) {
         console.log('/menu/editItem');

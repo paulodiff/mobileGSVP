@@ -336,7 +336,11 @@ angular.module('myApp.controllers')
         $location.path('/edit/' + itemId);
     };
     
-    
+    // callback for ng-click 'viewUser':
+    $scope.viewItem = function (itemId) {
+        console.log('viewItem');
+        $location.path('/view/' + itemId);
+    };    
     
   // --------------------------------------------------- modal test    
     

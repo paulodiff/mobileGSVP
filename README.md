@@ -17,10 +17,10 @@ Come metterlo in produzione:
                   cambia url di produzione
 
 
-- NO OLD Modificare la base_url/login in loginControllers.js (NON SERVE)
+- *NO* OLD Modificare la base_url/login in loginControllers.js (NON SERVE)
 - Lanciare gulp production
-- Copiare tutto con js-min al posto di js
-- Modificare index.html
+- Copiare le cartelle dist/js e dist/partials
+- *NO* Modificare index.html 
 - GIT-UPDATE.BAT (upload to GITHUB)
 
 ##Informazioni ed articoli di riferimento
@@ -60,6 +60,14 @@ http://brainoverflow.net/preloading-images-with-angularjs-directives/
 Framework gulp
 http://netengine.com.au/blog/gulp-and-angularjs-a-love-story-or-the-old-wheel-was-terrible-check-out-my-new-wheel/
 
+AngularForm
+http://www.yearofmoo.com/2014/09/taming-forms-in-angularjs-1-3.html#rendering-error-messages
+
+Javascript API for OAuth2 authentication and REST services
+http://adodson.com/hello.js/#core-methods
+
+Gulp 
+http://jb.demonte.fr/blog/production-package-with-gulp-js/
 
 ## Uso di GIT
 http://rogerdudler.github.io/git-guide/index.it.html
