@@ -388,10 +388,14 @@ angular.module('myApp.controllers')
 // InfiniteCtrl ---------------------------------------------------------------------------------
 // InfiniteCtrl ---------------------------------------------------------------------------------
 // InfiniteCtrl ---------------------------------------------------------------------------------
+
+// Lista elementi delle relazioni
+
 .controller('InfiniteCtrlRelazioni', ['$scope', '$location', 'Restangular', '$filter', 'Session' , '$ionicPopup', '$ionicPopover',
                                       function($scope,  $location, Restangular, $filter, Session, $ionicPopup, $ionicPopover) {
     
-    console.log('InfiniteCtrlRelazioni start...');
+  console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+  console.log('InfiniteCtrlRelazioni START!');
   
   $scope.totalPages = 0;
   $scope.itemsCount = 0;
@@ -418,7 +422,7 @@ angular.module('myApp.controllers')
     anno_selezione: 0
   };
     
-    console.log('InfiniteCtrlRapporti INIT filterCriteria');
+    console.log('InfiniteCtrlRapporti INIT filterCriteria:');
     console.log($scope.filterCriteria);
     
     // popola la lista utenti
@@ -494,26 +498,13 @@ angular.module('myApp.controllers')
  
   //manually select a page to trigger an ajax request to populate the grid on page load
   console.log('InfiniteCtrl : selectPage 1');
+                                          
   $scope.selectPage(1);
     
 
-  // watch change selection    
-  $scope.$watch("id_utenti_selezione", function(newValue, oldValue) {
+  /* watch change selection    
+    $scope.$watch("id_utenti_selezione", function(newValue, oldValue) {
         console.log('id_utenti changed! New ' + newValue + ' Old ' +  oldValue + ' NO ACTION');
-        
-       //if ( (configAction == 'new') &&  (!(typeof newValue === "undefined")) && (newValue != null)) {
-       /*
-      
-        if(Session.isAdmin) {
-            $scope.filterCriteria.id_utenti_selezione = newValue;
-            $scope.currentPage = 1;
-            $scope.filterCriteria.pageNumber = $scope.currentPage;
-            $scope.fetchResult();
-        } else {
-            console.log('id_utenti changed! New NO ADMIN NO ACTION');
-        }
-        */
-        
     });    
     
     //watch on change
@@ -535,7 +526,7 @@ angular.module('myApp.controllers')
         $scope.fetchResult();
         
     });    
-    
+    */
     
     
     $scope.popupDate = function($event) {

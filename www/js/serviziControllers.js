@@ -411,17 +411,19 @@ angular.module('myApp.controllers')
 .controller('InfiniteCtrl', ['$scope', '$location', 'Restangular', '$filter', 'Session', '$ionicModal','$ionicSideMenuDelegate','$ionicPopover', 
                              function($scope,  $location, Restangular, $filter, Session, $ionicModal,   $ionicSideMenuDelegate,  $ionicPopover) {
     
+  console.log('SERVIZI>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');                                 
   console.log('InfiniteCtrl start...');
   
   $scope.totalPages = 0;
   $scope.itemsCount = 0;
   $scope.currentPage = 1;    
   $scope.totalItems = 0;
-  $scope.pageSize = 100000; // impostato al massimo numero di elementi
+  $scope.pageSize = 10; // impostato al massimo numero di elementi
   $scope.startPage = 0;         
   $scope.openedPopupDate = false;    
   $scope.utentiList = [];
-  $scope.id_utenti_selezione = 0;                                
+  $scope.id_utenti_selezione = 0;        
+  $scope.items = [];
   
   // gestione modal popup slide per i filtri --------------------------------------------------
   $ionicModal.fromTemplateUrl('partials/sortModal.html', function(sortModal) {
@@ -465,7 +467,7 @@ angular.module('myApp.controllers')
     anno_selezione: 0
   };
     
-    console.log('InfiniteCtrl INIT filterCriteria');
+    console.log('InfiniteCtrl SERVIZI INIT filterCriteria');
     console.log($scope.filterCriteria);
     
     // popola la lista utenti
@@ -499,7 +501,7 @@ angular.module('myApp.controllers')
     
       var serviziList = Restangular.all('serviziAll');
       
-      console.log('InfiniteCtrl...fetchResult - count');
+      console.log('InfiniteCtrl...fetchResult - GET Count');
       $scope.filterCriteria.count = 1;
       serviziList.getList($scope.filterCriteria).then(function(data) {
             console.log('COUNT: data[0].totalItems:' + data[0].totalItems);
@@ -516,31 +518,76 @@ angular.module('myApp.controllers')
             //$scope.totalPages = 0;
         });
 
-      console.log('InfiniteCtrl...fetchResult - get data');
+      console.log('InfiniteCtrl...fetchResult - GET data');
       
       var offset_page =  ( $scope.currentPage - 1 ) * $scope.pageSize;
       $scope.filterCriteria.count = 0;
       $scope.filterCriteria.start = offset_page;
+      
+      /*
+      $scope.items = serviziList.getList($scope.filterCriteria).$object;
+      console.log('@@@@@@@@@@@@@@@@@@ dati ritornati @@@@@@@@@@@@@@@@@@@');
+      console.log($scope.items);
+      */
+      
+      
       return serviziList.getList($scope.filterCriteria).then(function(data) {
             console.log(data);
-            $scope.items = data;
+      
+                    
+            data.forEach(function (idata) {
+                console.log(idata);
+                $scope.items.push(idata);
+            });
+          
+          
+            /*
+          
+            if($scope.items.length > 0){
+                console.log(' InfiniteCtrl.. successive aggiunte');
+                $scope.items.call("push", data);
+            } else {
+                console.log(' InfiniteCtrl.. prima inizializzazione');
+                $scope.items = data;
+            }
+            
+            */
+            
         }, function () {
             $scope.items = [];
         });
+        
+          
     };
       
  
   //called when navigate to another page in the pagination
   $scope.selectPage = function () {
     var page = $scope.currentPage;
+    console.log('SELECT PAGE ...');  
     console.log('Page changed to: ' + $scope.currentPage);  
     console.log('InfiniteCtrl...selectPage:' + page);
     $scope.currentPage = page;
     $scope.filterCriteria.pageNumber = page;
     $scope.fetchResult();
   };
+                  
+  // if more data can be loader                                 
+  $scope.loadMoreDataCanBeLoaded = function () {
+      if ($scope.currentPage < 10 ) return true;
+      return false;
+  };
  
-  
+  $scope.loadMore = function () {
+      
+    $scope.currentPage = $scope.currentPage + 1;
+    $scope.filterCriteria.pageNumber = $scope.currentPage;  
+      
+    console.log('LOAD MORE!!!! ... increment page  :' + $scope.currentPage); 
+    console.log('LOAD MORE!!!! ...'); 
+    $scope.selectPage();
+    $scope.$broadcast('scroll.infiniteScrollComplete');
+  };
  
   //manually select a page to trigger an ajax request to populate the grid on page load
   console.log('InfiniteCtrl : selectPage 1');

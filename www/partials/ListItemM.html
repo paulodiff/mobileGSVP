@@ -16,7 +16,7 @@
                   <i ng-show="item.annullato_servizi==1" class="icon ion-close-circled"></i>
                   <i ng-show="item.annullato_servizi==0" class="icon ion-checkmark"></i>
                   <span class="itemTopRight">{{item.data_servizi | date:'dd/MM/yyyy' }}</span>    
-                  <p><b>{{item.nome_breve_utenti}}</b></p>
+                  <p><b>({{item.id}}) {{item.nome_breve_utenti}}</b></p>
                   <span class="itemTopRight">{{item.da_ora_servizi | date:'HH:mm' }} {{item.a_ora_servizi | date:'HH:mm' }}</span>    
                   <p>{{item.elenco_volontari}} </p>
                   <p>{{item.note_servizi}}</p>
@@ -27,6 +27,14 @@
                     </ion-option-button>
                 </ion-item>
             </ion-list>
+            <ion-infinite-scroll
+                ng-if="loadMoreDataCanBeLoaded()"
+                on-infinite="loadMore()"
+                icon="ion-loading-c"
+                distance="1%">
+            </ion-infinite-scroll>
+        
         </div>
+        
     </ion-content>
 </ion-view>      
