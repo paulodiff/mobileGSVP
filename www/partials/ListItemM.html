@@ -12,7 +12,7 @@
     <ion-content has-header="true">
         <div>
             <ion-list>
-                <ion-item ng-repeat="item in items" class="item-icon-left">
+                <ion-item ng-repeat="item in items" class="item-icon-left" ng-click="openDetailModal(item)">
                   <i ng-show="item.annullato_servizi==1" class="icon ion-close-circled"></i>
                   <i ng-show="item.annullato_servizi==0" class="icon ion-checkmark"></i>
                   <span class="itemTopRight">{{item.data_servizi | date:'dd/MM/yyyy' }}</span>    
@@ -27,13 +27,7 @@
                     </ion-option-button>
                 </ion-item>
             </ion-list>
-            <ion-infinite-scroll
-                ng-if="loadMoreDataCanBeLoaded()"
-                on-infinite="loadMore()"
-                icon="ion-loading-c"
-                distance="1%">
-            </ion-infinite-scroll>
-        
+    
         </div>
         
     </ion-content>

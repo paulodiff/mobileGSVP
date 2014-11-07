@@ -408,37 +408,63 @@ angular.module('myApp.controllers')
 // InfiniteCtrl ---------------------------------------------------------------------------------
 // InfiniteCtrl ---------------------------------------------------------------------------------
 // InfiniteCtrl ---------------------------------------------------------------------------------
-.controller('InfiniteCtrl', ['$scope', '$location', 'Restangular', '$filter', 'Session', '$ionicModal','$ionicSideMenuDelegate','$ionicPopover', 
-                             function($scope,  $location, Restangular, $filter, Session, $ionicModal,   $ionicSideMenuDelegate,  $ionicPopover) {
+.controller('InfiniteCtrl', ['$scope', '$location', 'Restangular', '$filter', 'Session', '$ionicModal','$ionicSideMenuDelegate','$ionicPopover', '$ionicLoading', 
+                             function($scope,  $location, Restangular, $filter, Session, $ionicModal,   $ionicSideMenuDelegate,  $ionicPopover, $ionicLoading) {
     
   console.log('SERVIZI>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');                                 
   console.log('InfiniteCtrl start...');
   
   $scope.totalPages = 0;
   $scope.itemsCount = 0;
-  $scope.currentPage = 1;    
+  $scope.currentPage = 1; 
+  $scope.currentItemDetail = null;
   $scope.totalItems = 0;
-  $scope.pageSize = 10; // impostato al massimo numero di elementi
+  $scope.pageSize = 1000; // impostato al massimo numero di elementi
   $scope.startPage = 0;         
   $scope.openedPopupDate = false;    
   $scope.utentiList = [];
   $scope.id_utenti_selezione = 0;        
   $scope.items = [];
+  $scope.loadMoreDataCanBeLoaded = true;
   
   // gestione modal popup slide per i filtri --------------------------------------------------
-  $ionicModal.fromTemplateUrl('partials/sortModal.html', function(sortModal) {
+  $ionicModal.fromTemplateUrl('partials/sortModal.html', 
+        function(sortModal) {
             $scope.sortModal = sortModal;
-  }, {
+        }, {
             scope: $scope,
             animation: 'slide-in-up'
-  });
+        });
+           
+  $ionicModal.fromTemplateUrl('partials/detailModal.html', 
+        function(detailModal) {
+            $scope.detailModal = detailModal;
+        }, {
+            scope: $scope,
+            animation: 'slide-in-up'
+        });
+                                 
+                                 
                                  
   $scope.openSortModal = function() {
         console.log('InfiniteCtrl Sort Modal ...');    
         $scope.sortModal.show();
   };
                                  
+  $scope.openDetailModal = function(item) {
+        console.log('InfiniteCtrl Detail Modal ... :');    
+        console.log(item);
+        item.data_servizi = $filter('date')(item.data_servizi, "dd/MM/yyyy"); 
+        item.a_ora_servizi = item.a_ora_servizi.substr(11,5);
+        item.da_ora_servizi = item.da_ora_servizi.substr(11,5);
+        $scope.currentItemDetail = item;
+        $scope.detailModal.show();
+  };
+                                 
+                                 
   $scope.closeSortModal = function() {$scope.sortModal.hide();};
+  $scope.closeDetailModal = function() {$scope.detailModal.hide();};
+                                 
   $scope.saveSort = function() {
     console.log("SORT MODAL " + this.filterTerm + " sort " + this.sortBy + ' id_selezione :' + this.id_utenti_selezione);
     $scope.filterCriteria.id_utenti_selezione = this.id_utenti_selezione;
@@ -450,6 +476,7 @@ angular.module('myApp.controllers')
   }
   
   $scope.OpenFilter = function() {
+       console.log("OpenFilter .. sortModal.show()");
         $scope.sortModal.show();
   };                                 
                                
@@ -496,13 +523,21 @@ angular.module('myApp.controllers')
  
   //The function that is responsible of fetching the result from the server and setting the grid to the new result
   $scope.fetchResult = function () {
-      console.log('InfiniteCtrl...fetchResult');
+      console.log('InfiniteCtrl: fetchResult');
+      console.log('InfiniteCtrl: impostazione criteri di filtro');
+
+      var offset_page =  ( $scope.currentPage - 1 ) * $scope.pageSize;
+      $scope.filterCriteria.start = offset_page;
       console.log($scope.filterCriteria);
+      
     
       var serviziList = Restangular.all('serviziAll');
       
       console.log('InfiniteCtrl...fetchResult - GET Count');
-      $scope.filterCriteria.count = 1;
+      
+      // Get items count 
+      /*
+      $scope.filterCriteria.count = 1; // imposta il conteggio sul server
       serviziList.getList($scope.filterCriteria).then(function(data) {
             console.log('COUNT: data[0].totalItems:' + data[0].totalItems);
             console.log(data);
@@ -512,53 +547,41 @@ angular.module('myApp.controllers')
             } else {
                 $scope.totalItems = 0;
             }
-            //$scope.totalPages = data[0].totalItems;
+        // Error get count
         }, function () {
             $scope.totalItems = 0;
             //$scope.totalPages = 0;
-        });
-
+      }); // items count
+      */      
+          // Get items ...  
       console.log('InfiniteCtrl...fetchResult - GET data');
-      
-      var offset_page =  ( $scope.currentPage - 1 ) * $scope.pageSize;
-      $scope.filterCriteria.count = 0;
-      $scope.filterCriteria.start = offset_page;
-      
+      $scope.filterCriteria.count = 0; // imposta la selezione standard sul server
+      $ionicLoading.show({template: 'Dati in arrivo!' });
+      return serviziList.getList($scope.filterCriteria).then(function(data) {
+                //console.log(data);
+                $scope.items = data;
+                /*
+                data.forEach(function (idata) {
+                    console.log(idata);
+                    $scope.items.push(idata);
+                });
+                */
+            
+                console.log(' .. data loaded!');
+                $ionicLoading.hide();  
+              
+          // in caso di errore azzera la lista...      
+          }, function () {
+                $scope.items = [];
+      });
+          
       /*
       $scope.items = serviziList.getList($scope.filterCriteria).$object;
       console.log('@@@@@@@@@@@@@@@@@@ dati ritornati @@@@@@@@@@@@@@@@@@@');
       console.log($scope.items);
       */
-      
-      
-      return serviziList.getList($scope.filterCriteria).then(function(data) {
-            console.log(data);
-      
-                    
-            data.forEach(function (idata) {
-                console.log(idata);
-                $scope.items.push(idata);
-            });
           
-          
-            /*
-          
-            if($scope.items.length > 0){
-                console.log(' InfiniteCtrl.. successive aggiunte');
-                $scope.items.call("push", data);
-            } else {
-                console.log(' InfiniteCtrl.. prima inizializzazione');
-                $scope.items = data;
-            }
-            
-            */
-            
-        }, function () {
-            $scope.items = [];
-        });
-        
-          
-    };
+ };
       
  
   //called when navigate to another page in the pagination
@@ -570,28 +593,14 @@ angular.module('myApp.controllers')
     $scope.currentPage = page;
     $scope.filterCriteria.pageNumber = page;
     $scope.fetchResult();
+      
   };
                   
-  // if more data can be loader                                 
-  $scope.loadMoreDataCanBeLoaded = function () {
-      if ($scope.currentPage < 10 ) return true;
-      return false;
-  };
  
-  $scope.loadMore = function () {
-      
-    $scope.currentPage = $scope.currentPage + 1;
-    $scope.filterCriteria.pageNumber = $scope.currentPage;  
-      
-    console.log('LOAD MORE!!!! ... increment page  :' + $scope.currentPage); 
-    console.log('LOAD MORE!!!! ...'); 
-    $scope.selectPage();
-    $scope.$broadcast('scroll.infiniteScrollComplete');
-  };
  
   //manually select a page to trigger an ajax request to populate the grid on page load
   console.log('InfiniteCtrl : selectPage 1');
-  $scope.selectPage(1);
+  $scope.selectPage();
     
 
   /*
@@ -686,6 +695,7 @@ angular.module('myApp.controllers')
     };
                         
     $scope.OpenFilterFromPopover = function() {
+        console.log('OpenFilterFromPopover');
         $scope.popover.hide();
         $scope.sortModal.show();
     };                                   
@@ -698,6 +708,7 @@ angular.module('myApp.controllers')
     templatePopover +=    '<div class="list">';
     templatePopover +=    '<a class="item item-icon-left" ng-click="newRelazioniFromPopover()" ><i class="icon ion-plus-circled"></i> Nuovo elemento</a>';
     templatePopover +=    '<a class="item item-icon-left" ng-click="OpenFilterFromPopover()"><i class="icon ion-funnel"></i>Filtro</a>';
+    //templatePopover +=    '<a class="item item-icon-left" ng-click="ShowItemDetailFromPopover()"><i class="icon ion-funnel"></i>Item</a>';
     //templatePopover +=    '<button class="button button-clear button-positive" ng-click="debug_action()">Chiudi</button>';
     templatePopover +=    '</div>';
     templatePopover +=    '</ion-content>';                                      

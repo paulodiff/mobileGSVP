@@ -1,0 +1,41 @@
+<ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Dettaglio preventivo di servizio</h1>
+        <button class="button  button-positive" ng-click="closeDetailModal()">Chiudi</button>
+    </ion-header-bar>
+    <ion-content has-header="true">
+        <div class="padding">
+             <label class="item item-text-wrap">
+                <b>Associazione:</b><br/>{{currentItemDetail.nome_breve_utenti}}
+            </label>                
+            <label class="item item-text-wrap">
+                <b>Volontari:</b><br/>{{currentItemDetail.elenco_volontari}}
+            </label>
+
+            <label class="item item-input">
+                <div class="input-label"><b>Data servizio:</b></div>
+                <div class="input-label">{{currentItemDetail.data_servizi}}</div>
+            </label>
+         
+            <label class="item item-input">
+               <div class="input-label"><b>Dalle ore:</b></div>
+               <div class="input-label">{{currentItemDetail.da_ora_servizi}}</div>
+            </label>
+
+            <label class="item item-input">
+               <div class="input-label"><b>Alle ore:</b></div>
+               <div class="input-label">{{currentItemDetail.a_ora_servizi}}</div>
+            </label>
+
+            <label class="item item-text-wrap">
+                <b>Località:</b><br/>{{currentItemDetail.note_servizi}}
+            </label>
+            
+            <label class="item item-text-wrap">
+                <b>Motivazioni:</b><br/>{{currentItemDetail.rapporto_servizi}}
+            </label>
+                
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>
