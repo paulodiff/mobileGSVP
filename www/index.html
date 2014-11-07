@@ -6,8 +6,15 @@
     <title>Gestione Volontari - mobile</title>
 
     <link href="lib/ionic-v1.0.0-beta.13/css/ionic.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
       
+    <!-- gulp-preprocess rimuove il blocco sottostante in produzione -->  
+    <!-- @if NODE_ENV='production' -->  
+    <link href="css/style.css" rel="stylesheet">
+    <!-- @endif -->
+
+    <!-- CSS  PRODUZIONE -->
+    <!-- @echo TAG_CSS -->      
+
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -38,26 +45,14 @@
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
     <!-- @endif -->
-      
-    <!-- PRODUZIONE -->  
-                
+            
     <!-- INCLUSIONE PER LA PRODUZIONE -->
-      
-    <!-- gulp-inject -->   
     
     <!-- APP -->
-
-    <!-- inject:app:js -->
-    <!-- preload app.js -->
-    <!-- endinject -->      
+    <!-- @echo TAG_JS_APP -->      
       
     <!-- PRELOAD  TEMPLATES -->
-      
-    <!-- inject:template:js -->
-    <!-- preload template.js -->
-    <!-- endinject -->
-    
-    <!-- @echo FILE_JS_INCLUDE -->      
+    <!-- @echo TAG_JS_PARTIALS -->      
       
     <!-- PRELOAD IMAGES -->
     <script>

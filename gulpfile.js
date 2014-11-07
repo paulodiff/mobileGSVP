@@ -174,7 +174,7 @@ gulp.task('default1', function() {
 //http://jbavari.github.io/blog/2014/08/23/managing-environment-variables-for-your-ionic-application/
 
 
-gulp.task('production', ['template2','compress', 'index'] );
+gulp.task('dist', ['clean:dist','vendor','css','template','compress', 'index'] );
 
 gulp.task('htmlmin', function() {
    var htmlSrc = 'www/partials/*.html',
@@ -220,11 +220,19 @@ gulp.task('template', function() {
 // BUILD INDEX WITH NEW MD5
 
 gulp.task('index', function () {
+    
+  var tagJsApp = '<script src="js/app-' + mymd5 +'.js" type="text/javascript"></script>';    
+  var tagCSS = '<link href="css/style-' + mymd5 + '.css" rel="stylesheet">';    
+  var tagJsPartials = '<script src="partials/partials-' + mymd5 +'.js" type="text/javascript"></script>';  
+    
   gulp.src('www/index.html')
-    .pipe(preprocess({context: { NODE_ENV: 'productionold', DEBUG: true}}))
-    .pipe(inject(gulp.src('dist/js/app-' + mymd5 +'.js', {read: false}), {starttag: '<!-- inject:app:{{ext}} -->' , relative: false}))
-    .pipe(inject(gulp.src('dist/partials/templates-' + mymd5 +'.js', {read: false}), {starttag: '<!-- inject:template:{{ext}} -->' , relative: true}))
-    .pipe(inject(gulp.src('dist/css/css-' + mymd5 +'.css', {read: false}), {starttag: '<!-- inject:template:{{ext}} -->' , relative: true}))
+    .pipe(preprocess({context: { 
+        NODE_ENV: 'productionold', 
+        DEBUG: true, 
+        TAG_JS_APP : tagJsApp,
+        TAG_JS_PARTIALS : tagJsPartials,
+        TAG_CSS : tagCSS
+    }}))
     //.pipe(inject(gulp.src(['www/js/*.js', '!./src/importantFile.js'], {read: false}), {relative: true}))
     .pipe(rename('index.html'))
     .pipe(gulp.dest('dist/'));
@@ -239,6 +247,13 @@ gulp.task('template2', function () {
         .pipe(rename('templates-'+ mymd5 +'.js'))
         .pipe(gulp.dest('dist/partials'));
     gutil.log('templates-'+ mymd5 +'.js');
+});
+
+// VENDOR LIBRARY COPY
+
+gulp.task('vendor', function () {
+    gulp.src('www/lib/**')
+        .pipe(gulp.dest('dist/lib'));
 });
 
 // LINT CHECK FILES
