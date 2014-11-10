@@ -60,9 +60,11 @@
 
 .itemTopRight {
     float: right;
-    margin: 1px;
-    border: 0px solid;
-    font-size: 80%;
+    margin: 0px;
+    /* border: 02px solid; */
+    font-size: 70%;
+    font-weight: bold;
+    color:#083be6;
 }
 
 
@@ -110,4 +112,11 @@
   float: left;
   margin-right: 10px;
   width: 30px;
-  text-align: center; }
+  text-align: center; 
+}
+
+/* collection repeat */
+.my-item-collection-repeat {
+  left: 0 !important;
+  right: 0 !important;
+}

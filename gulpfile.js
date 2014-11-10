@@ -25,6 +25,8 @@ var minifyHTML = require('gulp-minify-html');
 var minifyCSS = require('gulp-minify-css');
 var imagepreload = require('gulp-image-preload');
 var del = require('del');
+var templateCache = require('gulp-angular-templatecache');
+var runSequence = require('run-sequence');
     
 
 var mymd5 = new Date().getTime(); 
@@ -172,9 +174,17 @@ gulp.task('default1', function() {
 //var sh = require('shelljs');
 
 //http://jbavari.github.io/blog/2014/08/23/managing-environment-variables-for-your-ionic-application/
+//gulp.task('dist', ['clean:dist','vendor','css','templateHtmlOnly','compress', 'index'] );
 
 
-gulp.task('dist', ['clean:dist','vendor','css','template','compress', 'index'] );
+gulp.task('dist', function(callback) {
+  runSequence('clean:dist',
+              ['vendor','css','templateHtmlOnly','compress','images'],
+              'index',
+              callback);
+});
+
+
 
 gulp.task('htmlmin', function() {
    var htmlSrc = 'www/partials/*.html',
@@ -200,6 +210,35 @@ gulp.task('clean:dist', function (cb) {
   ], cb);
 });
 
+
+// BUILD TEMPLATECACHE
+gulp.task('templatecache', function () {
+    gulp.src('www/partials/*.html')
+        .pipe(templateCache({
+            //standalone: true,
+            root: 'partials'
+        }))
+        .pipe(rename("partials-"+ mymd5 +".js"))
+        .pipe(gulp.dest('dist/partials'));
+});
+
+// BUILD TEMPLATE JS
+
+gulp.task('templateHtmlOnly', function() {
+    gulp.src("www/partials/*.html")
+    .pipe(minifyHTML({
+            empty: true,
+            spare: true,
+            quotes: true}
+                    ))
+    //.pipe(concat("partials-"+ mymd5 +".js"))
+    //.pipe(uglify())
+    .pipe(gulp.dest("dist/partials"));
+});
+
+
+
+// BUILD TEMPLATE JS
 
 gulp.task('template', function() {
     gulp.src("www/partials/*.html")
@@ -255,6 +294,16 @@ gulp.task('vendor', function () {
     gulp.src('www/lib/**')
         .pipe(gulp.dest('dist/lib'));
 });
+
+
+// IMAGES FOLDER COPY
+
+gulp.task('images', function () {
+    gulp.src('www/img/**')
+        .pipe(gulp.dest('dist/img'));
+});
+
+
 
 // LINT CHECK FILES
 

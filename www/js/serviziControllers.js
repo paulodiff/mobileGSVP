@@ -602,6 +602,15 @@ angular.module('myApp.controllers')
   console.log('InfiniteCtrl : selectPage 1');
   $scope.selectPage();
     
+  // COLLECTION REPEAT TEST                               
+  $scope.getItemHeight = function(item) {
+    return item.isLetter ? 40 : 100;
+  };
+  $scope.getItemWidth = function(item) {
+    return '100%';
+  };                                 
+                                 
+                                 
 
   /*
                                  
